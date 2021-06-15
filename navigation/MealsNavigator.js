@@ -1,30 +1,18 @@
-import React from "react";
-import { View, Text, StyleSheet, Platform } from "react-native";
-import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 import CategoriesScreen from "../screens/CategoriesScreen";
-import CategoryMealsScreen from "../screens/CategoryMealsScreen";
-import MealDetailsScreen from "../screens/MealDetailsScreen";
-import Colors from "../constants/Colors";
-const MealsNavigator = createStackNavigator(
-  {
-    Categories: CategoriesScreen,
-    CategoryMeals: {
-      screen: CategoryMealsScreen,
-    },
-    MealDetails: MealDetailsScreen,
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
-      },
-      headerTintColor:
-        Platform.OS === "android" ? "white" : Colors.primaryColor,
-    },
-  }
-);
+import MealDetails from "../screens/MealDetails";
+import MealsListScreen from "../screens/MealsListScreen";
 
-//configure the different screens we want to move on the stack
+const MealsNavigator = createStackNavigator({
+  //any_name_as_a_property_name:  pointer-at-the-component-you-want-to-load
+  Categories: CategoriesScreen,
+  MealsList: {
+    screen: MealsListScreen,
+  },
+  MealDetails: MealDetails,
+
+  //another way is also there
+});
 
 export default createAppContainer(MealsNavigator);
