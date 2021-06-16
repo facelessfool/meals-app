@@ -1,51 +1,44 @@
 import React from "react";
 import {
-  Text,
   View,
+  Text,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  Image,
 } from "react-native";
 
 const MealItem = (props) => {
-  //   console.log("props in mealitem : ", props);
+  //   console.log("---");
+  console.log(props);
+  console.log(props.meali.imageUrl);
   return (
-    <View style={styles.mealContainer}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={props.onSelect}>
-        <View>
-          <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
-            <ImageBackground source={{ uri: props.img }} style={styles.bgImage}>
-              <Text style={styles.titleFont} numberOfLines={1}>
-                {props.title}
-              </Text>
-            </ImageBackground>
+        <ImageBackground
+          source={{ uri: props.meali.imageUrl }}
+          style={styles.bgImage}
+        >
+          <View>
+            <Text style={styles.titleFont}>{props.meali.title}</Text>
           </View>
+
           <View style={styles.mealRow}>
-            <Text> {props.duration}m</Text>
+            <Text style={styles.BodyFont}>{props.meali.duration}mins</Text>
           </View>
-        </View>
+        </ImageBackground>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  mealContainer: {
+  container: {
     height: 220,
-    width: "100%",
     backgroundColor: "#ccc",
+    width: "100%",
+
     borderRadius: 10,
     overflow: "hidden",
-  },
-  mealRow: {
-    flexDirection: "row",
-  },
-  mealHeader: {
-    height: "90%",
-  },
-  MealDetails: {
-    height: "10%",
   },
   bgImage: {
     width: "100%",
@@ -53,11 +46,23 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
+
   titleFont: {
     fontFamily: "open-sans",
     fontSize: 20,
+    marginRight: 10,
     color: "white",
     backgroundColor: "rgba(0, 0, 0, 0.4)",
+  },
+  BodyFont: {
+    fontFamily: "open-sans",
+    fontSize: 15,
+    color: "white",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    marginRight: 10,
+  },
+  mealRow: {
+    flexDirection: "row",
   },
 });
 

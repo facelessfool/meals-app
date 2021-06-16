@@ -3,13 +3,23 @@ import { View, Text, Button, StyleSheet, FlatList } from "react-native";
 import { headerTitle } from "react-navigation-stack";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import Meal from "../models/meal";
+import MealItem from "../components/MealItem";
 
 const MealsListScreen = (props) => {
   const renderMealItem = (itemData) => {
-    // console.log(itemData.item.title);
+    console.log(itemData.item.title);
     return (
       <View>
-        <Text>{itemData.item.title}</Text>
+        {/* <Text>{itemData.item.title}</Text> */}
+        <MealItem
+          meali={itemData.item}
+          onSelect={() => {
+            props.navigation.navigate("MealDetails", {
+              steps: itemData.item.steps,
+              title: itemData.item.title,
+            });
+          }}
+        />
       </View>
     );
   };
@@ -22,12 +32,12 @@ const MealsListScreen = (props) => {
   return (
     <View>
       <FlatList data={displayedMeals} renderItem={renderMealItem} />
-      <Button
+      {/* <Button
         title="Go back"
         onPress={() => {
           props.navigation.goBack();
         }}
-      />
+      /> */}
     </View>
   );
 };

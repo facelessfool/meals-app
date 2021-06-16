@@ -1,8 +1,11 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import MealDetails from "../screens/MealDetails";
 import MealsListScreen from "../screens/MealsListScreen";
+import FavScreen from "../screens/FavScreen";
+import Colors from "../constants/Colors";
 
 const MealsNavigator = createStackNavigator({
   //any_name_as_a_property_name:  pointer-at-the-component-you-want-to-load
@@ -15,4 +18,16 @@ const MealsNavigator = createStackNavigator({
   //another way is also there
 });
 
-export default createAppContainer(MealsNavigator);
+const FavTabNavigator = createBottomTabNavigator(
+  {
+    Meals: MealsNavigator,
+    Fav: FavScreen,
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: Colors.accentColor,
+    },
+  }
+);
+
+export default createAppContainer(FavTabNavigator);
